@@ -63,6 +63,14 @@ nav>h2{
 main{
     min-height: 75vh;
 }
+main>h1{
+    text-align: center;
+    margin: 10px;
+}
+main>h2{
+    text-align: center;
+    margin: 5px;
+}
 
 /* Pie de pagína */
 body>footer{

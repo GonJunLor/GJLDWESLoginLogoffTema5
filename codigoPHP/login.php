@@ -30,11 +30,14 @@
         <h2>Login</h2>
     </nav>
     <main>
-         <form action="" method="post">
-            <input type="submit" value="Entrar" name="entrar">
-            <input type="submit" value="Cancelar" name="cancelar">
-            <input type="submit" value="Registrarse" name="registrarse">
-        </form>
+        <div class="container">
+            <form action="" method="post">
+                <input type="submit" value="Entrar" name="entrar">
+                <input type="submit" value="Cancelar" name="cancelar">
+                <input type="submit" value="Registrarse" name="registrarse">
+            </form>
+        </div>
+        
     </main>
     <footer id="pie">
         <div>
