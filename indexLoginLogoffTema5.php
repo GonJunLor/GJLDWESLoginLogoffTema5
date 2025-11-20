@@ -20,10 +20,9 @@
     <title>Gonzalo Junquera Lorenzo</title>
 </head>
 <body>
-    <div id="aviso">CURSO 2025/2026 -- DAW 2 -- I.E.S. LOS SAUCES</div>
+    <div id="aviso">Aplicación  con control de acceso e identificación del usuario.</div>
     <nav>
-        <h2>Proyecto - Login Logoff Tema 5</h2>
-        <h2>Gonzalo Junquera Lorenzo</h2>
+        <h2>Login Logoff Tema 5</h2>
     </nav>
     <main>
         
@@ -33,14 +32,14 @@
             <a href="https://github.com/GonJunLor/GJLDWESLoginLogoffTema5.git" target="_blank">
                 <i class="fa-brands fa-github"></i>
             </a>
-            <a href="https://mogutable.com/" target="_blank"><i class="fa-solid fa-house"></i></a>
         </div>
-        2024-25 IES LOS SAUCES. &#169;Todos los derechos reservados. 
+        2025-26 IES LOS SAUCES. &#169;Todos los derechos reservados. 
         <div>
-            <a href="https://gonzalojunlor.ieslossauces.es/">
+            <a href="https://gonzalojunlor.ieslossauces.es/" target="_blank">
             <address style="display: inline;">Gonzalo Junquera Lorenzo</address>
             </a>
-            <time datetime="2025-11-20">20-11-2025</time>
+            <time datetime="2025-11-20">20-11-2025.</time>
+            <a href="https://mogutable.com/" id="webImitada" target="_blank">Web imitada</a>
         </div>
     </footer>
 </body>
