@@ -1,6 +1,10 @@
 <?php
-    if (isset($_REQUEST['iniciarSesion'])) {
-        header('Location: codigoPHP/login.php');
+    if (isset($_REQUEST['cancelar'])) {
+        header('Location: ../indexLoginLogoffTema5.php');
+        exit;
+    }
+    if (isset($_REQUEST['entrar'])) {
+        header('Location: inicioPrivado.php');
         exit;
     }
 ?>
@@ -16,21 +20,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="webroot/media/favicon/favicon-32x32.png">
     <link rel="stylesheet" href="webroot/css/fonts.css">
-    <link rel="stylesheet" href="webroot/css/estilos.css">
+    <link rel="stylesheet" href="../webroot/css/estilos.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" type="text/css" rel="stylesheet">
     <title>Gonzalo Junquera Lorenzo</title>
 </head>
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
-        <h2>Inicio público</h2>
-        <form action="" method="post">
-            <input type="submit" value="Iniciar Sesion" name="iniciarSesion">
-        </form>
+        <h2>Login</h2>
     </nav>
     <main>
-        <h1>Bienvenido a la aplicacion</h1>
-        <h2>Login Logoff Tema 5</h2>
+         <form action="" method="post">
+            <input type="submit" value="Entrar" name="entrar">
+            <input type="submit" value="Cancelar" name="cancelar">
+            <input type="submit" value="Registrarse" name="registrarse">
+        </form>
     </main>
     <footer id="pie">
         <div>
