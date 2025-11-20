@@ -27,6 +27,7 @@
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
+        <img src="../webroot/media/images/logo.png" alt="logo">
         <h2>Login</h2>
     </nav>
     <main>

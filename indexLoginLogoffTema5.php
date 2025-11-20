@@ -23,9 +23,10 @@
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
+        <img src="webroot/media/images/logo.png" alt="logo">
         <h2>Inicio público</h2>
         <form action="" method="post">
-            <input type="submit" value="Iniciar Sesion" name="iniciarSesion">
+            <button name="iniciarSesion" class="boton"><span>Iniciar Sesión</span></button>
         </form>
     </nav>
     <main>

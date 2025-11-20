@@ -27,14 +27,15 @@
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
-        <h2>Página de detalle Tema 5</h2>
+        <img src="../webroot/media/images/logo.png" alt="logo">
+        <h2>Página de detalle</h2>
         <form action="" method="post">
-            <input type="submit" value="Cerrar sesión" name="cerrarSesion">
+            <button name="cerrarSesion" class="boton"><span>Cerrar sesión</span></button>
         </form>
     </nav>
     <main>
          <form action="" method="post">
-            <input type="submit" value="Volver" name="volver">
+            <button name="volver" class="boton"><span>Volver</span></button>
         </form>
     </main>
     <footer id="pie">
