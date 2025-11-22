@@ -27,7 +27,7 @@
 
         // Validamos los datos del formulario
         $aErrores['usuario']= validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'],100,0,1,);
-        $aErrores['contrasena'] = validacionFormularios::validarPassword($_REQUEST['contrasena'],20,6);
+        $aErrores['contrasena'] = validacionFormularios::validarPassword($_REQUEST['contrasena'],20,4,2);
         
         foreach($aErrores as $campo => $valor){
             if(!empty($valor)){ // Comprobar si el valor es válido
