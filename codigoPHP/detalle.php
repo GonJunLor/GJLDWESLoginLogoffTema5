@@ -1,4 +1,9 @@
 <?php
+    /**
+    * @author: Gonzalo Junquera Lorenzo
+    * @since: 24/11/2025
+    * Proyecto Login logoff Tema 5.
+    */
     if (isset($_REQUEST['cerrarSesion'])) {
             header('Location: ../indexLoginLogoffTema5.php');
             exit;

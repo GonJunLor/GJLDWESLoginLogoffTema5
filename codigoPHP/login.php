@@ -1,7 +1,7 @@
 <?php
     /**
     * @author: Gonzalo Junquera Lorenzo
-    * @since: 24/10/2025
+    * @since: 24/11/2025
     * Proyecto Login logoff Tema 5.
     */
 

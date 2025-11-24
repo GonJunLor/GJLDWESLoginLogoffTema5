@@ -1,4 +1,9 @@
 <?php
+    /**
+    * @author: Gonzalo Junquera Lorenzo
+    * @since: 24/11/2025
+    * Proyecto Login logoff Tema 5.
+    */
     if (isset($_REQUEST['iniciarSesion'])) {
         header('Location: codigoPHP/login.php');
         exit;
@@ -16,7 +21,7 @@
 <!DOCTYPE html>
 <!--
     Autor: Gonzalo Junquera Lorenzo
-    Fecha modificación: 20/11/2025
+    Fecha modificación: 24/11/2025
     Descripción: Aplicación Login Logoff Tema 5
 -->
 <html lang="es">
