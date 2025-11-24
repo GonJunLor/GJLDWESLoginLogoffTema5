@@ -37,6 +37,17 @@
          <form action="" method="post">
             <button name="detalle" class="boton"><span>Detalle</span></button>
         </form>
+        <?php 
+            if ($_COOKIE["idioma"]=="ES") {
+                echo "<h2>Hola soy español</h2>";
+            }
+            if ($_COOKIE["idioma"]=="EN") {
+                echo "<h2>Hello I,am English</h2>";
+            }
+            if ($_COOKIE["idioma"]=="FR") {
+                echo "<h2>Bonjour, je suis français</h2>";
+            }
+        ?>
     </main>
     <footer id="pie">
         <div>

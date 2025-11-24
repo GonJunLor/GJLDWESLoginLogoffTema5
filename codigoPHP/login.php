@@ -67,10 +67,8 @@
         <h2>INICIO SESIÓN</h2>
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
             <input type="text" id="usuario" name="usuario" value="<?php echo $_REQUEST['usuario']??'' ?>" placeholder="Usuario">
-            <span class="error"><?php echo $aErrores['usuario']??'' ?></span>
             <br>
             <input type="password" name="contrasena" value="<?php echo $_REQUEST['contrasena']??'' ?>" placeholder="Contraseña">
-            <span class="error"><?php echo $aErrores['contrasena']??'' ?></span>
             <br>   
             <button name="entrar" class="boton" id="entrar"><span>Entrar</span></button>
             <button name="cancelar" class="boton" id="cancelar"><span>Cancelar</span></button>

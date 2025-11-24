@@ -3,6 +3,15 @@
         header('Location: codigoPHP/login.php');
         exit;
     }
+    if (!isset($_COOKIE['idioma'])) {
+        setcookie("idioma", "es", time()+2000002);
+    }
+
+    if (isset($_REQUEST['idioma'])) {
+        setcookie("idioma", $_REQUEST['idioma'], time()+2000002);
+        header('Location: ./indexLoginLogoffTema5.php');
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <!--
@@ -27,6 +36,9 @@
         <h2>Inicio público</h2>
         <form action="" method="post">
             <button name="iniciarSesion" class="boton"><span>Iniciar Sesión</span></button>
+            <input type="submit" value="ES" name="idioma" style="background-color:<?php echo $_COOKIE["idioma"]=="ES"? 'red' : 'lightgray'; ?>">
+            <input type="submit" value="EN" name="idioma" style="background-color:<?php echo $_COOKIE["idioma"]=="EN"? 'red' : 'lightgray'; ?>"> 
+            <input type="submit" value="FR" name="idioma" style="background-color:<?php echo $_COOKIE["idioma"]=="FR"? 'red' : 'lightgray'; ?>">
         </form>
     </nav>
     <main>
