@@ -37,7 +37,7 @@
          <form action="" method="post">
             <button name="detalle" class="boton"><span>Detalle</span></button>
         </form>
-        <?php 
+        <?php
             if ($_COOKIE["idioma"]=="ES") {
                 echo "<h2>Hola soy español</h2>";
             }
