@@ -68,7 +68,7 @@
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
             <input type="text" id="usuario" name="usuario" value="<?php echo $_REQUEST['usuario']??'' ?>" placeholder="Usuario">
             <br>
-            <input type="password" name="contrasena" value="<?php echo $_REQUEST['contrasena']??'' ?>" placeholder="Contraseña">
+            <input type="password" id="contrasena" name="contrasena" value="<?php echo $_REQUEST['contrasena']??'' ?>" placeholder="Contraseña">
             <br>   
             <button name="entrar" class="boton" id="entrar"><span>Entrar</span></button>
             <button name="cancelar" class="boton" id="cancelar"><span>Cancelar</span></button>
@@ -111,8 +111,9 @@
             height: 500px;
             min-height: 500px;
             margin: auto;
-            /* background-color: #eeeeee; */
-            background-color: #fff1de;
+            background-color: #eeeeee;
+            /* background-color: #bfc9cd; */
+            /* background-color: #fff1de; */
             /* border: 2px solid #fff1de; */
             border-radius: 20px;
             margin-top: 20px;
@@ -167,6 +168,9 @@
             border-radius: 6px;
             font-weight: bold;
             /* font-family: 'Times New Roman', Times, serif; */
+        }
+        #usuario, #contrasena{
+            background-color: #fff1de;
         }
     </style>
 </head>

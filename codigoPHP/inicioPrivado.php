@@ -52,6 +52,7 @@
             if ($_COOKIE["idioma"]=="FR") {
                 echo "<h2>Bonjour, je suis français</h2>";
             }
+            // Poner mensaje de bienvenida
         ?>
     </main>
     <footer id="pie">

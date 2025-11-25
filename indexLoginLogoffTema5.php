@@ -9,7 +9,7 @@
         exit;
     }
     if (!isset($_COOKIE['idioma'])) {
-        setcookie("idioma", "es", time()+604.800); // caducidad 1 semana
+        setcookie("idioma", "ES", time()+604.800); // caducidad 1 semana
     }
 
     if (isset($_REQUEST['idioma'])) {
