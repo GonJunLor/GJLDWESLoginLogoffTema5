@@ -1,13 +1,27 @@
 <?php
+    /**
+    * @author: Gonzalo Junquera Lorenzo
+    * @since: 24/11/2025
+    * Proyecto Login logoff Tema 5.
+    */
     if (isset($_REQUEST['iniciarSesion'])) {
         header('Location: codigoPHP/login.php');
+        exit;
+    }
+    if (!isset($_COOKIE['idioma'])) {
+        setcookie("idioma", "ES", time()+604.800); // caducidad 1 semana
+    }
+
+    if (isset($_REQUEST['idioma'])) {
+        setcookie("idioma", $_REQUEST['idioma'], time()+604.800); // caducidad 1 semana
+        header('Location: ./indexLoginLogoffTema5.php');
         exit;
     }
 ?>
 <!DOCTYPE html>
 <!--
     Autor: Gonzalo Junquera Lorenzo
-    Fecha modificación: 20/11/2025
+    Fecha modificación: 24/11/2025
     Descripción: Aplicación Login Logoff Tema 5
 -->
 <html lang="es">
@@ -25,6 +39,20 @@
     <nav>
         <img src="webroot/media/images/logo.png" alt="logo">
         <h2>Inicio público</h2>
+        <form action="" method="post">
+            <button type="submit" name="idioma" value="ES" id="ES" 
+            style="background-color:<?php echo $_COOKIE["idioma"]=="ES"? '#c2bcb9' : 'white';?>">
+                <img src="webroot/media/images/banderaEs.png" alt="es">
+            </button>
+            <button type="submit" name="idioma" value="EN" id="EN"
+            style="background-color:<?php echo $_COOKIE["idioma"]=="EN"? '#c2bcb9' : 'white';?>">
+                <img src="webroot/media/images/banderaGb.png" alt="en">
+            </button>
+            <button type="submit" name="idioma" value="FR" id="FR"
+            style="background-color:<?php echo $_COOKIE["idioma"]=="FR"? '#c2bcb9' : 'white';?>">
+                <img src="webroot/media/images/banderaFr.png" alt="fr">
+            </button>
+        </form>
         <form action="" method="post">
             <button name="iniciarSesion" class="boton"><span>Iniciar Sesión</span></button>
         </form>

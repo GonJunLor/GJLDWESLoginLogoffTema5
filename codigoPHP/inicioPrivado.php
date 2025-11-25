@@ -1,4 +1,9 @@
 <?php
+    /**
+    * @author: Gonzalo Junquera Lorenzo
+    * @since: 24/11/2025
+    * Proyecto Login logoff Tema 5.
+    */
     if (isset($_REQUEST['cerrarSesion'])) {
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
@@ -11,7 +16,7 @@
 <!DOCTYPE html>
 <!--
     Autor: Gonzalo Junquera Lorenzo
-    Fecha modificación: 20/11/2025
+    Fecha modificación: 24/11/2025
     Descripción: Aplicación Login Logoff Tema 5
 -->
 <html lang="es">
@@ -37,6 +42,18 @@
          <form action="" method="post">
             <button name="detalle" class="boton"><span>Detalle</span></button>
         </form>
+        <?php
+            if ($_COOKIE["idioma"]=="ES") {
+                echo "<h2>Hola soy español</h2>";
+            }
+            if ($_COOKIE["idioma"]=="EN") {
+                echo "<h2>Hello I,am English</h2>";
+            }
+            if ($_COOKIE["idioma"]=="FR") {
+                echo "<h2>Bonjour, je suis français</h2>";
+            }
+            // Poner mensaje de bienvenida
+        ?>
     </main>
     <footer id="pie">
         <div>
