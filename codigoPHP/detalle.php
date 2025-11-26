@@ -4,9 +4,15 @@
     * @since: 24/11/2025
     * Proyecto Login logoff Tema 5.
     */
+    session_start();
+    
+    if (!isset($_SESSION["usuario"])) {
+        header("location: ../indexLoginLogoffTema5.php"); 
+        exit;
+    }
     if (isset($_REQUEST['cerrarSesion'])) {
-            header('Location: ../indexLoginLogoffTema5.php');
-            exit;
+        header('Location: ../indexLoginLogoffTema5.php');
+        exit;
     }
     if (isset($_REQUEST['volver'])) {
         header('Location: inicioPrivado.php');
