@@ -10,6 +10,8 @@
     }
     if (!isset($_COOKIE['idioma'])) {
         setcookie("idioma", "ES", time()+604.800); // caducidad 1 semana
+        header('Location: ./indexLoginLogoffTema5.php');
+        exit;
     }
 
     if (isset($_REQUEST['idioma'])) {

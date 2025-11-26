@@ -10,6 +10,9 @@
         exit;
     }
 
+    session_start();
+    // importamos el archivo con los datos de conexión
+    require_once '../conf/confDBPDO.php';
     require_once "../core/231018libreriaValidacion.php"; // importamos nuestra libreria
     
     $entradaOK = true; //Variable que nos indica que todo va bien
@@ -40,11 +43,58 @@
     }
     //Tratamiento del formulario
     if($entradaOK){ //Cargar la variable $aRespuestas y tratamiento de datos OK
-        if (isset($_REQUEST['entrar'])) {
-            header('Location: inicioPrivado.php');
-            exit;
-        }
-        
+
+        try {
+
+            // Conectamos a la base de datos
+            $miDB = new PDO(DSN,USERNAME,PASSWORD);
+
+            // Consulta preparada: Busca un usuario y contraseña coincidentes
+            $sql = "SELECT * FROM T01_Usuario WHERE T01_CodUsuario = :usuario AND T01_Password = sha2(:contras,256)";
+            $consulta = $miDB->prepare($sql);
+            $consulta->execute([
+                ':usuario' => $_REQUEST['usuario'],
+                ':contras' => $_REQUEST['usuario'].$_REQUEST['contrasena']
+            ]);
+            
+            // Si encuentra una fila, las credenciales son correctas
+            $registro = $consulta->fetchObject();
+            if ($registro){
+
+                // sino se inicia la session y guardamos datos de sesión
+                session_start();
+                $_SESSION['usuario'] = $registro->T01_CodUsuario;
+                $_SESSION['descripcion'] = $registro->T01_DescUsuario;
+                $_SESSION['ultimaConexion'] = $registro->T01_FechaHoraUltimaConexion;
+                $_SESSION['numConexiones'] = $registro->T01_NumConexiones+1;
+
+                //Se actualiza lafecha de ultima session y el contador de conexiones
+                $actualizacion = <<<SQL
+                                UPDATE T01_Usuario SET
+                                T01_FechaHoraUltimaConexion = now(),
+                                T01_NumConexiones = T01_NumConexiones + 1
+                                WHERE T01_CodUsuario = :usuario
+                                SQL;
+                $consulta2 = $miDB->prepare($actualizacion);
+                $consulta2->execute([':usuario' => $_REQUEST['usuario']]);
+
+                // Avanzamos a la pagina inicio privado
+                header('Location: inicioPrivado.php');
+                exit;
+
+            // Si el usuario NO es válido vuelve a cargar el login.
+            } else {
+                header('Location: login.php');
+                exit;
+            }
+
+        } catch (PDOException $miExceptionPDO) {
+            // temporalmente ponemos estos errores para que se muestren en pantalla
+            echo 'Error: '.$miExceptionPDO->getMessage().'con código de error: '.$miExceptionPDO->getCode();
+        } finally {
+            unset($miDB);
+        }   
+
     } else { //Mostrar el formulario hasta que lo rellenemos correctamente
         //Mostrar formulario
         //Mostrar los datos tecleados correctamente en intentos anteriores

@@ -4,6 +4,12 @@
     * @since: 24/11/2025
     * Proyecto Login logoff Tema 5.
     */
+    session_start();
+    
+    if (!isset($_SESSION["usuario"])) {
+        header("location: ../indexLoginLogoffTema5.php"); 
+        exit;
+    }
     if (isset($_REQUEST['cerrarSesion'])) {
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
@@ -43,16 +49,29 @@
             <button name="detalle" class="boton"><span>Detalle</span></button>
         </form>
         <?php
+            $fechaUltimaConexion = new DateTime($_SESSION['ultimaConexion']);
             if ($_COOKIE["idioma"]=="ES") {
-                echo "<h2>Hola soy español</h2>";
+                setlocale(LC_TIME, 'es_ES.utf8');
+
+                echo '<h2>Bienvenido '.$_SESSION['descripcion'].'.</h2>';
+                echo '<h2>Esta el la '.$_SESSION['numConexiones'].' vez que se conecta.</h2>';
+                echo '<h2>Usted se conectó por última vez el '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
             }
             if ($_COOKIE["idioma"]=="EN") {
-                echo "<h2>Hello I,am English</h2>";
+                setlocale(LC_TIME, 'en_GB.utf8');
+
+                echo '<h2>Welcome '.$_SESSION['descripcion'].'.</h2>';
+                echo '<h2>This is the '.$_SESSION['numConexiones'].' time you have connected.</h2>';
+                echo '<h2>You were last connected on '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
             }
             if ($_COOKIE["idioma"]=="FR") {
-                echo "<h2>Bonjour, je suis français</h2>";
+                setlocale(LC_TIME, 'fr_FR.UTF-8');
+
+                echo '<h2>Bienvenue '.$_SESSION['descripcion'].'.</h2>';
+                echo '<h2>Voici votre '.$_SESSION['numConexiones'].' e connexion.</h2>';
+                echo '<h2>Votre dernière connexion remonte au '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
             }
-            // Poner mensaje de bienvenida
+            
         ?>
     </main>
     <footer id="pie">
