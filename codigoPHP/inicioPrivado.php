@@ -6,11 +6,13 @@
     */
     session_start();
     
-    if (!isset($_SESSION["usuario"])) {
-        header("location: ../indexLoginLogoffTema5.php"); 
+    if (!isset($_SESSION["usuarioDAW205AppLoginLogoffTema5"])) {
+        header("location: login.php"); 
         exit;
     }
     if (isset($_REQUEST['cerrarSesion'])) {
+        // Destruye la sesión
+        session_destroy();
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
@@ -49,27 +51,37 @@
             <button name="detalle" class="boton"><span>Detalle</span></button>
         </form>
         <?php
-            $fechaUltimaConexion = new DateTime($_SESSION['ultimaConexion']);
+            
+            $usuarioEnCurso = $_SESSION['usuarioDAW205AppLoginLogoffTema5'];
+            $fechaUltimaConexion = new DateTime($usuarioEnCurso['FechaHoraUltimaConexionAnterior']);
+
             if ($_COOKIE["idioma"]=="ES") {
                 setlocale(LC_TIME, 'es_ES.utf8');
 
-                echo '<h2>Bienvenido '.$_SESSION['descripcion'].'.</h2>';
-                echo '<h2>Esta el la '.$_SESSION['numConexiones'].' vez que se conecta.</h2>';
-                echo '<h2>Usted se conectó por última vez el '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
+                echo '<h2>Bienvenido '.$usuarioEnCurso['DescUsuario'].'.</h2>';
+                echo '<h2>Esta el la '.$usuarioEnCurso['NumConexiones'].' vez que se conecta.</h2>';
+                if (($usuarioEnCurso['NumConexiones'])>1) {
+                    echo '<h2>Usted se conectó por última vez el '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
+                }
+                
             }
             if ($_COOKIE["idioma"]=="EN") {
                 setlocale(LC_TIME, 'en_GB.utf8');
 
-                echo '<h2>Welcome '.$_SESSION['descripcion'].'.</h2>';
-                echo '<h2>This is the '.$_SESSION['numConexiones'].' time you have connected.</h2>';
-                echo '<h2>You were last connected on '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
+                echo '<h2>Welcome '.$usuarioEnCurso['DescUsuario'].'.</h2>';
+                echo '<h2>This is the '.$usuarioEnCurso['NumConexiones'].' time you have connected.</h2>';
+                if (($usuarioEnCurso['NumConexiones'])>1) {
+                    echo '<h2>You were last connected on '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
+                }
             }
             if ($_COOKIE["idioma"]=="FR") {
                 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
-                echo '<h2>Bienvenue '.$_SESSION['descripcion'].'.</h2>';
-                echo '<h2>Voici votre '.$_SESSION['numConexiones'].' e connexion.</h2>';
-                echo '<h2>Votre dernière connexion remonte au '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
+                echo '<h2>Bienvenue '.$usuarioEnCurso['DescUsuario'].'.</h2>';
+                echo '<h2>Voici votre '.$usuarioEnCurso['NumConexiones'].' e connexion.</h2>';
+                if (($usuarioEnCurso['NumConexiones'])>1) {
+                    echo '<h2>Votre dernière connexion remonte au '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
+                }
             }
             
         ?>

@@ -61,14 +61,20 @@
             $registro = $consulta->fetchObject();
             if ($registro){
 
+                $oFechaActual = new DateTime();
                 // sino se inicia la session y guardamos datos de sesión
                 session_start();
-                $_SESSION['usuario'] = $registro->T01_CodUsuario;
-                $_SESSION['descripcion'] = $registro->T01_DescUsuario;
-                $_SESSION['ultimaConexion'] = $registro->T01_FechaHoraUltimaConexion;
-                $_SESSION['numConexiones'] = $registro->T01_NumConexiones+1;
+                $_SESSION['usuarioDAW205AppLoginLogoffTema5'] = [
+                'CodUsuario' => $registro->T01_CodUsuario,
+                'Password' => $registro->T01_Password,
+                'DescUsuario' => $registro->T01_DescUsuario,
+                'FechaHoraUltimaConexionAnterior' => $registro->T01_FechaHoraUltimaConexion,
+                'FechaHoraUltimaConexion' => $oFechaActual->format('Y-m-d H:i:s'),
+                'NumConexiones' => $registro->T01_NumConexiones+1,
+                'Perfil' => $registro->T01_Perfil
+                ];
 
-                //Se actualiza lafecha de ultima session y el contador de conexiones
+                //Se actualiza la fecha de ultima session y el contador de conexiones
                 $actualizacion = <<<SQL
                                 UPDATE T01_Usuario SET
                                 T01_FechaHoraUltimaConexion = now(),

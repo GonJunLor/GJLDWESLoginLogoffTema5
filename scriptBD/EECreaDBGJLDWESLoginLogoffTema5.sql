@@ -17,7 +17,7 @@ create table if not exists DBGJLDWESLoginLogoffTema5.T01_Usuario(
     T01_Password varchar(64) not null,
     T01_DescUsuario varchar(255) not null,
     T01_NumConexiones int not null default 0,
-    T01_FechaHoraUltimaConexion datetime not null default now(),
+    T01_FechaHoraUltimaConexion datetime default null,
     T01_Perfil varchar (100) not null default 'usuario',
     T01_ImagenUsuario BLOB default null
 )engine=innodb;
