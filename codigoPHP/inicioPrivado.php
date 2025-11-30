@@ -6,16 +6,21 @@
     */
     session_start();
     
+    // comprobamos que existe la sesion para este usuario, sino redirige al login
     if (!isset($_SESSION["usuarioDAW205AppLoginLogoffTema5"])) {
         header("location: login.php"); 
         exit;
     }
+
+    // Volvemos al índice general destruyendo la sesión
     if (isset($_REQUEST['cerrarSesion'])) {
         // Destruye la sesión
         session_destroy();
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
+
+    // vamos a la página detalle
     if (isset($_REQUEST['detalle'])) {
         header('Location: detalle.php');
         exit;
@@ -40,7 +45,7 @@
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
-        <img src="../webroot/media/images/logo.png" alt="logo">
+        <a href="../indexLoginLogoffTema5.php"><img src="../webroot/media/images/logo.png" alt="logo"></a>
         <h2>Inicio privado</h2>
         <form action="" method="post">
             <button name="cerrarSesion" class="boton"><span>Cerrar sesión</span></button>
@@ -52,15 +57,15 @@
         </form>
         <?php
             
-            $usuarioEnCurso = $_SESSION['usuarioDAW205AppLoginLogoffTema5'];
-            $fechaUltimaConexion = new DateTime($usuarioEnCurso['FechaHoraUltimaConexionAnterior']);
+            $aUsuarioEnCurso = $_SESSION['usuarioDAW205AppLoginLogoffTema5'];
+            $fechaUltimaConexion = new DateTime($aUsuarioEnCurso['FechaHoraUltimaConexionAnterior']);
 
             if ($_COOKIE["idioma"]=="ES") {
                 setlocale(LC_TIME, 'es_ES.utf8');
 
-                echo '<h2>Bienvenido '.$usuarioEnCurso['DescUsuario'].'.</h2>';
-                echo '<h2>Esta el la '.$usuarioEnCurso['NumConexiones'].' vez que se conecta.</h2>';
-                if (($usuarioEnCurso['NumConexiones'])>1) {
+                echo '<h2>Bienvenido '.$aUsuarioEnCurso['DescUsuario'].'.</h2>';
+                echo '<h2>Esta el la '.$aUsuarioEnCurso['NumConexiones'].' vez que se conecta.</h2>';
+                if (($aUsuarioEnCurso['NumConexiones'])>1) {
                     echo '<h2>Usted se conectó por última vez el '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
                 }
                 
@@ -68,18 +73,18 @@
             if ($_COOKIE["idioma"]=="EN") {
                 setlocale(LC_TIME, 'en_GB.utf8');
 
-                echo '<h2>Welcome '.$usuarioEnCurso['DescUsuario'].'.</h2>';
-                echo '<h2>This is the '.$usuarioEnCurso['NumConexiones'].' time you have connected.</h2>';
-                if (($usuarioEnCurso['NumConexiones'])>1) {
+                echo '<h2>Welcome '.$aUsuarioEnCurso['DescUsuario'].'.</h2>';
+                echo '<h2>This is the '.$aUsuarioEnCurso['NumConexiones'].' time you have connected.</h2>';
+                if (($aUsuarioEnCurso['NumConexiones'])>1) {
                     echo '<h2>You were last connected on '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
                 }
             }
             if ($_COOKIE["idioma"]=="FR") {
                 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
-                echo '<h2>Bienvenue '.$usuarioEnCurso['DescUsuario'].'.</h2>';
-                echo '<h2>Voici votre '.$usuarioEnCurso['NumConexiones'].' e connexion.</h2>';
-                if (($usuarioEnCurso['NumConexiones'])>1) {
+                echo '<h2>Bienvenue '.$aUsuarioEnCurso['DescUsuario'].'.</h2>';
+                echo '<h2>Voici votre '.$aUsuarioEnCurso['NumConexiones'].' e connexion.</h2>';
+                if (($aUsuarioEnCurso['NumConexiones'])>1) {
                     echo '<h2>Votre dernière connexion remonte au '.strftime("%d de %B de %Y a las %H:%M:%S", $fechaUltimaConexion->getTimestamp()).'.</h2>';
                 }
             }

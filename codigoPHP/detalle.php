@@ -6,10 +6,13 @@
     */
     session_start();
     
+    // comprobamos que existe la sesion para este usuario, sino redirige al login
     if (!isset($_SESSION["usuarioDAW205AppLoginLogoffTema5"])) {
         header("location: login.php"); 
         exit;
     }
+
+    // Volvemos al índice general destruyendo la sesión
     if (isset($_REQUEST['cerrarSesion'])) {
         // Destruye la sesión
         session_destroy();
@@ -17,6 +20,8 @@
         
         exit;
     }
+
+    // volvemos a la página de inicio privado
     if (isset($_REQUEST['volver'])) {
         header('Location: inicioPrivado.php');
         exit;
@@ -153,7 +158,7 @@
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
-        <img src="../webroot/media/images/logo.png" alt="logo">
+        <a href="../indexLoginLogoffTema5.php"><img src="../webroot/media/images/logo.png" alt="logo"></a>
         <h2>Página de detalle</h2>
         <form action="" method="post">
             <button name="cerrarSesion" class="boton"><span>Cerrar sesión</span></button>

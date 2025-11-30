@@ -4,16 +4,36 @@
     * @since: 24/11/2025
     * Proyecto Login logoff Tema 5.
     */
+
+    session_start();
+
+    $textoBotonIniciarSesion = 'Iniciar Sesión';
+    
+    // comprobamos que existe la sesion para este usuario para cambiar el texto del boton de iniciar sesión
+    if (isset($_SESSION["usuarioDAW205AppLoginLogoffTema5"])) {
+        $textoBotonIniciarSesion = 'Hola '.$_SESSION["usuarioDAW205AppLoginLogoffTema5"]['CodUsuario'];
+
+        // si está la sesión iniciada redirigimos directamente al inicio privado
+        if (isset($_REQUEST['iniciarSesion'])) {
+            header('Location: codigoPHP/inicioPrivado.php');
+            exit;
+        }
+    }
+
+    // Redireccion a página login al dar al botón de iniciar sesión
     if (isset($_REQUEST['iniciarSesion'])) {
         header('Location: codigoPHP/login.php');
         exit;
     }
+
+    // comprubea si existe una cookie de idioma y si no existe la crea en español
     if (!isset($_COOKIE['idioma'])) {
         setcookie("idioma", "ES", time()+604.800); // caducidad 1 semana
         header('Location: ./indexLoginLogoffTema5.php');
         exit;
     }
 
+    // comprueba si se ha pulsado cualquier botón de idioma y pone en la cookie su valor para establecer el idioma
     if (isset($_REQUEST['idioma'])) {
         setcookie("idioma", $_REQUEST['idioma'], time()+604.800); // caducidad 1 semana
         header('Location: ./indexLoginLogoffTema5.php');
@@ -39,7 +59,7 @@
 <body>
     <div id="aviso">Login Logoff Tema 5</div>
     <nav>
-        <img src="webroot/media/images/logo.png" alt="logo">
+        <a href="./indexLoginLogoffTema5.php"><img src="webroot/media/images/logo.png" alt="logo"></a>
         <h2>Inicio público</h2>
         <form action="" method="post">
             <button type="submit" name="idioma" value="ES" id="ES" 
@@ -56,7 +76,7 @@
             </button>
         </form>
         <form action="" method="post">
-            <button name="iniciarSesion" class="boton"><span>Iniciar Sesión</span></button>
+            <button name="iniciarSesion" class="boton"><span><?php echo $textoBotonIniciarSesion; ?></span></button>
         </form>
     </nav>
     <main>
