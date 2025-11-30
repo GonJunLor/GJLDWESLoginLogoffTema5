@@ -5,12 +5,12 @@
     * Proyecto Login logoff Tema 5.
     */
 
+    // volvemos al index principal al dar a cancelar
     if (isset($_REQUEST['cancelar'])) {
         header('Location: ../indexLoginLogoffTema5.php');
         exit;
     }
 
-    session_start();
     // importamos el archivo con los datos de conexión
     require_once '../conf/confDBPDO.php';
     require_once "../core/231018libreriaValidacion.php"; // importamos nuestra libreria
@@ -58,17 +58,23 @@
             ]);
             
             // Si encuentra una fila, las credenciales son correctas
-            $registro = $consulta->fetchObject();
-            if ($registro){
+            $usuarioBD = $consulta->fetchObject();
+            if ($usuarioBD){
 
+                $oFechaActual = new DateTime();
                 // sino se inicia la session y guardamos datos de sesión
                 session_start();
-                $_SESSION['usuario'] = $registro->T01_CodUsuario;
-                $_SESSION['descripcion'] = $registro->T01_DescUsuario;
-                $_SESSION['ultimaConexion'] = $registro->T01_FechaHoraUltimaConexion;
-                $_SESSION['numConexiones'] = $registro->T01_NumConexiones+1;
+                $_SESSION['usuarioDAW205AppLoginLogoffTema5'] = [
+                'CodUsuario' => $usuarioBD->T01_CodUsuario,
+                'Password' => $usuarioBD->T01_Password,
+                'DescUsuario' => $usuarioBD->T01_DescUsuario,
+                'FechaHoraUltimaConexionAnterior' => $usuarioBD->T01_FechaHoraUltimaConexion,
+                'FechaHoraUltimaConexion' => $oFechaActual->format('Y-m-d H:i:s'),
+                'NumConexiones' => $usuarioBD->T01_NumConexiones+1,
+                'Perfil' => $usuarioBD->T01_Perfil
+                ];
 
-                //Se actualiza lafecha de ultima session y el contador de conexiones
+                //Se actualiza la fecha de ultima session y el contador de conexiones
                 $actualizacion = <<<SQL
                                 UPDATE T01_Usuario SET
                                 T01_FechaHoraUltimaConexion = now(),
@@ -107,46 +113,6 @@
     Descripción: Aplicación Login Logoff Tema 5
 -->
 <html lang="es">
-<body>
-    <div id="aviso">Login Logoff Tema 5</div>
-    <nav>
-        <img src="../webroot/media/images/logo.png" alt="logo">
-        <h2>Login</h2>
-    </nav>
-    <main>
-        <h2>INICIO SESIÓN</h2>
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
-            <input type="text" id="usuario" name="usuario" value="<?php echo $_REQUEST['usuario']??'' ?>" placeholder="Usuario">
-            <br>
-            <input type="password" id="contrasena" name="contrasena" value="<?php echo $_REQUEST['contrasena']??'' ?>" placeholder="Contraseña">
-            <br>   
-            <button name="entrar" class="boton" id="entrar"><span>Entrar</span></button>
-            <button name="cancelar" class="boton" id="cancelar"><span>Cancelar</span></button>
-            <br>
-            <hr>
-            <p>¿No tienes cuenta?</p>
-            <input type="button" value="Registrarse" name="registrarse" class="boton" id="registrarse">
-        </form>
-        <?php
-            }
-        ?> 
-    </main>
-    <footer id="pie">
-        <div>
-            <a href="https://github.com/GonJunLor/GJLDWESLoginLogoffTema5.git" target="_blank">
-                <i class="fa-brands fa-github"></i>
-            </a>
-        </div>
-        2025-26 IES LOS SAUCES. &#169;Todos los derechos reservados. 
-        <div>
-            <a href="https://gonzalojunlor.ieslossauces.es/" target="_blank">
-            <address style="display: inline;">Gonzalo Junquera Lorenzo</address>
-            </a>
-            <time datetime="2025-11-20">20-11-2025.</time>
-            <a href="https://mogutable.com/" id="webImitada" target="_blank">Web imitada</a>
-        </div>
-    </footer>
-</body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -224,4 +190,44 @@
         }
     </style>
 </head>
+<body>
+    <div id="aviso">Login Logoff Tema 5</div>
+    <nav>
+        <a href="../indexLoginLogoffTema5.php"><img src="../webroot/media/images/logo.png" alt="logo"></a>
+        <h2>Login</h2>
+    </nav>
+    <main>
+        <h2>INICIO SESIÓN</h2>
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
+            <input type="text" id="usuario" name="usuario" value="<?php echo $_REQUEST['usuario']??'' ?>" placeholder="Usuario">
+            <br>
+            <input type="password" id="contrasena" name="contrasena" value="<?php echo $_REQUEST['contrasena']??'' ?>" placeholder="Contraseña">
+            <br>   
+            <button name="entrar" class="boton" id="entrar"><span>Entrar</span></button>
+            <button name="cancelar" class="boton" id="cancelar"><span>Cancelar</span></button>
+            <br>
+            <hr>
+            <p>¿No tienes cuenta?</p>
+            <input type="button" value="Registrarse" name="registrarse" class="boton" id="registrarse">
+        </form>
+        <?php
+            }
+        ?> 
+    </main>
+    <footer id="pie">
+        <div>
+            <a href="https://github.com/GonJunLor/GJLDWESLoginLogoffTema5.git" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+        2025-26 IES LOS SAUCES. &#169;Todos los derechos reservados. 
+        <div>
+            <a href="https://gonzalojunlor.ieslossauces.es/" target="_blank">
+            <address style="display: inline;">Gonzalo Junquera Lorenzo</address>
+            </a>
+            <time datetime="2025-11-20">20-11-2025.</time>
+            <a href="https://mogutable.com/" id="webImitada" target="_blank">Web imitada</a>
+        </div>
+    </footer>
+</body>
 </html>
