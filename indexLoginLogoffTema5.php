@@ -80,8 +80,7 @@
         </form>
     </nav>
     <main>
-        <h1>Bienvenido a la aplicacion</h1>
-        <h2>Login Logoff Tema 5</h2>
+        <img src="webroot/media/images/arbol.png" alt="arbol de aplicación">
     </main>
     <footer id="pie">
         <div>
