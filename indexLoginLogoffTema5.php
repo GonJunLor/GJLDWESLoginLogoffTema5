@@ -50,7 +50,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="webroot/media/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="webroot/media/images/logo.png">
     <link rel="stylesheet" href="webroot/css/fonts.css">
     <link rel="stylesheet" href="webroot/css/estilos.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" type="text/css" rel="stylesheet">
@@ -80,8 +80,7 @@
         </form>
     </nav>
     <main>
-        <h1>Bienvenido a la aplicacion</h1>
-        <h2>Login Logoff Tema 5</h2>
+        <img src="webroot/media/images/arbol.png" alt="arbol de aplicación">
     </main>
     <footer id="pie">
         <div>
