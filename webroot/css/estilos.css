@@ -66,6 +66,7 @@ nav>h2{
 .boton{
     position: relative;
     overflow: hidden;
+    display: inline-block;
     width: 150px;
     background-color: #c2bcb9;
     border: 1px solid #c2bcb9;
@@ -97,6 +98,18 @@ nav>h2{
 .boton:hover::before{
     width: 100%;
     left: 0;
+}
+
+button[type="submit"]{
+    display: inline-block;
+    background-color: white;
+    border: 0px;
+    padding: 2px;
+    border-radius: 5px;
+}
+button[type="submit"] img{
+    width: 20px;
+    height: 20px;
 }
 /* Contenido */
 main{

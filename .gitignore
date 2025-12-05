@@ -1,2 +1,5 @@
 .vscode
 nbproject/
+scriptBD/BorraDBGJLDWESLoginLogoffTema5.sql
+scriptBD/CargaInicialDBGJLDWESLoginLogoffTema5.sql
+scriptBD/CreaDBGJLDWESLoginLogoffTema5.sql
