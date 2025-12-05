@@ -20,6 +20,13 @@
         exit;
     }
 
+    // comprueba si existe una cookie de idioma y si no existe la crea en español
+    if (!isset($_COOKIE['idioma'])) {
+        setcookie("idioma", "ES", time()+604.800); // caducidad 1 semana
+        header('Location: ./inicioPrivado.php');
+        exit;
+    }
+
     // vamos a la página detalle
     if (isset($_REQUEST['detalle'])) {
         header('Location: detalle.php');
